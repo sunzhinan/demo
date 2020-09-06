@@ -58,15 +58,25 @@ public class TestCountDownLatch {
             }
         },"线程4").start();
 
+        new Thread(()->{
+            try {
+
+                //这里试验了CountDownLatch是可以唤醒多个等待的线程的
+                countDownLatch.await();
+                System.out.println(Thread.currentThread().getName() + " 执行到了 ！");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        },"线程5").start();
+
         try {
             countDownLatch.await();
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         long endTime = System.currentTimeMillis();
 
-        System.out.println(endTime-startTime);
+        System.out.println("一共耗时 : " + (endTime-startTime));
 
     }
 }
