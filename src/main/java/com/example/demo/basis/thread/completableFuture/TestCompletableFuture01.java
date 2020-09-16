@@ -42,10 +42,10 @@ public class TestCompletableFuture01 {
         CompletableFuture<Integer> future3 = future2.thenApplyAsync((price)->{
 
             System.out.println(" future3 开始执行, 当前线程：" + Thread.currentThread().getName());
-            System.out.println("3: 商品价格是： " + price);
-            System.out.println("开始获得热度");
             try {
                 TimeUnit.SECONDS.sleep(7);
+                System.out.println("3: 商品价格是： " + price);
+                System.out.println("开始获得热度");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -56,10 +56,10 @@ public class TestCompletableFuture01 {
         CompletableFuture<String> future4 = future2.thenApplyAsync((price)->{
 
             System.out.println(" future4 开始执行, 当前线程：" + Thread.currentThread().getName());
-            System.out.println("4: 商品价格是： " + price);
-            System.out.println("开始获得评论");
             try {
                 TimeUnit.SECONDS.sleep(5);
+                System.out.println("4: 商品价格是： " + price);
+                System.out.println("开始获得评论");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -70,10 +70,10 @@ public class TestCompletableFuture01 {
         CompletableFuture<Integer> future5 = future2.thenApply((price)->{
 
             System.out.println(" future5 开始执行, 当前线程：" + Thread.currentThread().getName());
-            System.out.println("5: 商品价格是： " + price);
-            System.out.println("开始获得销量");
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(2);
+                System.out.println("5: 商品价格是： " + price);
+                System.out.println("开始获得销量");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -84,10 +84,10 @@ public class TestCompletableFuture01 {
         CompletableFuture<Integer> future6 = future5.thenApplyAsync((num)->{
 
             System.out.println(" future6 开始执行, 当前线程：" + Thread.currentThread().getName());
-            System.out.println("6: 商品销量是： " + num);
-            System.out.println("开始获得人气");
             try {
                 TimeUnit.SECONDS.sleep(1);
+                System.out.println("6: 商品销量是： " + num);
+                System.out.println("开始获得人气");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
