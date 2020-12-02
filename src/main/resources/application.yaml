@@ -1,4 +1,21 @@
 cache:
   overTime: 30000
   maxSize: 1024
-  
+
+
+spring:
+  #数据库连接配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rm-bp15497281n2zaczc2o.mysql.rds.aliyuncs.com:3306/sunzhinan?characterEncoding=utf-8&useSSL=false
+    username: sunzhinan
+    password: sthlh19930306*
+
+# mybatis
+mybatis:
+  type-aliases-package: com.example.demo.domain
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 3000
+  mapperLocations: classpath:mapper/*.xml

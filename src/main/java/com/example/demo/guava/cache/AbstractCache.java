@@ -65,7 +65,7 @@ public abstract class AbstractCache<K,V> {
     /**
      * 设置缓存基础信息
      */
-    public LoadingCache<K, V> setCache(){
+    public LoadingCache<K, V> setCache(GuavaCacheLoader<K,V> loader){
         LoadingCache<K, V> cache = CacheBuilder.newBuilder()
                 //设置并发级别，并发级别是指可以同时写缓存的线程数
                 .concurrencyLevel(parallelCount)
@@ -82,7 +82,7 @@ public abstract class AbstractCache<K,V> {
                     System.out.println(notification.getKey() + " " + notification.getValue() + " 被移除,原因:" + notification.getCause());
                 })
                 //build方法中可以指定CacheLoader，在缓存不存在时通过CacheLoader的实现自动加载缓存
-                .build(new GuavaCacheLoader<K,V>());
+                .build(loader);
         return cache;
     }
 
