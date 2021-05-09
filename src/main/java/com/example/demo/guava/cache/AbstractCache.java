@@ -47,6 +47,12 @@ public abstract class AbstractCache<K,V> {
      */
     private int parallelCount;
 
+    /**
+     * 这里我不设默认值
+     * @param maxSize
+     * @param overTime
+     * @param initCapacity
+     */
     protected AbstractCache(int maxSize, int overTime, int initCapacity) {
         if(maxSize > cacheConfig.getMaxSize()){
             this.maxSize = cacheConfig.getMaxSize();
@@ -81,7 +87,7 @@ public abstract class AbstractCache<K,V> {
                 .removalListener(notification -> {
                     System.out.println(notification.getKey() + " " + notification.getValue() + " 被移除,原因:" + notification.getCause());
                 })
-                //build方法中可以指定CacheLoader，在缓存不存在时通过CacheLoader的实现自动加载缓存
+                //build方法中可以指定CacheLoader，在缓存不存在时通过该loader的实现自动加载缓存
                 .build(loader);
         return cache;
     }
