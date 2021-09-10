@@ -19,6 +19,8 @@ public class TestLockSupport01 {
             System.out.println(Thread.currentThread().getName() + "结束了");
             LockSupport.unpark(thread02);
             LockSupport.park();
+
+            System.out.println("线程1执行完成！");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -31,6 +33,7 @@ public class TestLockSupport01 {
             TimeUnit.SECONDS.sleep(3);
             System.out.println(Thread.currentThread().getName() + "结束了");
             LockSupport.unpark(thread01);
+            System.out.println("线程2执行完成！");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -12,8 +12,8 @@ public class TestAtomic {
     static AtomicInteger a = new AtomicInteger(0);
 
     public static void m(){
-//        a.incrementAndGet();
-        a.getAndAdd(2);
+        a.incrementAndGet();
+//        a.getAndAdd(2);
     }
 
     public static void main(String[] args) {

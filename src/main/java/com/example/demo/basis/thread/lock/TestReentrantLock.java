@@ -28,10 +28,12 @@ public class TestReentrantLock {
     void n() {
         boolean locked = false;
         try {
-            locked = lock.tryLock(10, TimeUnit.SECONDS);
+            locked = lock.tryLock(1, TimeUnit.SECONDS);// 如果这里你把1s换成比上面3大，试试是什么结果
             //只有获得锁后才能执行方法
             if(locked){
                 System.out.println("获得了N方法的执行权");
+            }else{
+                System.out.println("没有获得N方法的执行权");
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
