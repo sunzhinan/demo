@@ -2,6 +2,8 @@ cache:
   overTime: 30000
   maxSize: 1024
 
+zookeeper:
+  sessionTimeOut: 3000
 
 spring:
   #数据库连接配置
