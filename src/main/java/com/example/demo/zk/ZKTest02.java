@@ -1,5 +1,7 @@
 package com.example.demo.zk;
 
+import com.example.demo.zk.provider.NodeWatcher;
+import com.example.demo.zk.provider.ServerCallBack;
 import org.apache.zookeeper.ZooKeeper;
 
 /**
@@ -26,10 +28,9 @@ public class ZKTest02 {
          * statCallback：回调函数，意思就是如果存在这个节点目录会调用的这个方法
          *
          */
-
         zk.exists("/test02", info.getNodeWatcher(), info.getStatCallback(),"/sunzhinan");
 
-        Thread.sleep(3000);
+        Thread.sleep(10000);
         System.out.println("----关闭ZK连接----");
 //        zk.close();
     }

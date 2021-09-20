@@ -1,6 +1,7 @@
 package com.example.demo.zk;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.zk.provider.ProviderWatcher;
 import org.apache.log4j.Logger;
 import org.apache.zookeeper.ZooKeeper;
 
@@ -20,20 +21,13 @@ public class ZookeeperHandler {
 
     private static CountDownLatch countDownLatch = new CountDownLatch(1);
 
-    private NodeWatcher nodeWatcher;
-
-    private ZookeeperInfo info;
-
-    public void setNodeWatcher(NodeWatcher nodeWatcher) {
-        this.nodeWatcher = nodeWatcher;
-    }
-
     public static ZooKeeper getZk(String address) {
         try {
-            zk = new ZooKeeper(address,sessionTimeOut, new ServerWatcher(countDownLatch));
+            zk = new ZooKeeper(address,sessionTimeOut, new ProviderWatcher(countDownLatch));
             // 这里必须等待zk连接上才能返回zk，如果没有等待zk连接上会有问题
             countDownLatch.await();
         }  catch (IOException | InterruptedException e) {
+            countDownLatch.countDown();
             LOG.info("连接Zookeeper异常 ： " + JSONObject.toJSONString(e));
         }
 
