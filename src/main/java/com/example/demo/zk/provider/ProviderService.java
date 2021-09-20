@@ -1,7 +1,5 @@
 package com.example.demo.zk.provider;
 
-import com.example.demo.zk.ZookeeperHandler;
-import com.example.demo.zk.ZookeeperInfo;
 import org.apache.zookeeper.ZooKeeper;
 
 import java.util.concurrent.CountDownLatch;
@@ -36,7 +34,7 @@ public class ProviderService {
         ZookeeperInfo info = new ZookeeperInfo();
         info.setCountDownLatch(countDownLatch);
         info.setNodeWatcher(new NodeWatcher(zk));
-        info.setStatCallback(new ServerCallBack(zk));
+        info.setStatCallback(new ProviderCallBack(zk));
         info.setData(data);
 
         // 首先判断根节点下是否有该（path）节点
@@ -50,12 +48,11 @@ public class ProviderService {
         countDownLatch.await();
 
         System.out.println("服务注册结果为 ： " + info.isProvideFlag());
-
         return info.isProvideFlag();
     }
 
     public static void main(String[] args) throws InterruptedException {
         ProviderService service = new ProviderService();
-        System.out.println(service.provideService("/provider","111"));
+        System.out.println(service.provideService("/provider","222"));
     }
 }

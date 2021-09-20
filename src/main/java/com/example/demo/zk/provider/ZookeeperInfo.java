@@ -1,4 +1,4 @@
-package com.example.demo.zk;
+package com.example.demo.zk.provider;
 
 import org.apache.zookeeper.AsyncCallback;
 import org.apache.zookeeper.Watcher;

@@ -1,7 +1,9 @@
 package com.example.demo.zk;
 
 import com.example.demo.zk.provider.NodeWatcher;
-import com.example.demo.zk.provider.ServerCallBack;
+import com.example.demo.zk.provider.ProviderCallBack;
+import com.example.demo.zk.provider.ZookeeperHandler;
+import com.example.demo.zk.provider.ZookeeperInfo;
 import org.apache.zookeeper.ZooKeeper;
 
 /**
@@ -16,7 +18,7 @@ public class ZKTest02 {
         // 第一步：获得zk连接
         ZooKeeper zk = ZookeeperHandler.getZk("114.215.200.152:2181/sunzhinan");
         ZookeeperInfo info = new ZookeeperInfo();
-        ServerCallBack callBack = new ServerCallBack(zk);
+        ProviderCallBack callBack = new ProviderCallBack(zk);
         info.setNodeWatcher(new NodeWatcher(zk));
         info.setStatCallback(callBack);
 

@@ -1,7 +1,6 @@
 package com.example.demo.zk.provider;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.demo.zk.ZookeeperInfo;
 import lombok.SneakyThrows;
 import org.apache.zookeeper.AsyncCallback;
 import org.apache.zookeeper.CreateMode;
@@ -17,11 +16,11 @@ import java.nio.charset.StandardCharsets;
  * @create: 2021-09-15 22:59
  * @description: 回调函数实现类
  */
-public class ServerCallBack implements AsyncCallback.StatCallback , AsyncCallback.DataCallback , AsyncCallback.Create2Callback {
+public class ProviderCallBack implements AsyncCallback.StatCallback , AsyncCallback.Create2Callback {
 
     private ZooKeeper zooKeeper;
 
-    public ServerCallBack(ZooKeeper zooKeeper) {
+    public ProviderCallBack(ZooKeeper zooKeeper) {
         this.zooKeeper = zooKeeper;
     }
 
@@ -76,13 +75,8 @@ public class ServerCallBack implements AsyncCallback.StatCallback , AsyncCallbac
         } else{
             System.out.println("节点已存在");
             // 存入数据，存入数据之前其实是要通过获取分布式锁来操作，这里省略
-            setValue(s,stat);
+            setValue(s,stat,o);
         }
-    }
-
-    @Override
-    public void processResult(int i, String s, Object o, byte[] bytes, Stat stat) {
-
     }
 
     /**
@@ -119,19 +113,46 @@ public class ServerCallBack implements AsyncCallback.StatCallback , AsyncCallbac
         show me stat : {"aversion":0,"ctime":1631902035090,"cversion":0,"czxid":113,"dataLength":10,"ephemeralOwner":0,"mtime":1631902035090,"mzxid":113,"numChildren":0,"pzxid":113,"version":0}
          */
 
-        // 如果stat为null说明节点已创建
-        if (stat == null){
+        // 如果节点创建并且设置好值
+        if(stat == null)
+        {
             // 将data拼接到该节点下，其实这里也有高并发的问题，需要加锁（还是通过zk的分布式锁方式或者通过radis，参考本项目代码）；为了方便这里我就不加锁了，要不然代码会很多
-            setValue(s,new Stat());
+            setValue(s,new Stat(),o);
+        }else
+        {
+            checkStat(stat,o,true);
         }
+
     }
 
-    private void setValue(String path,Stat stat) throws InterruptedException, KeeperException {
-        // 获得原先的值
-        byte[] data = zooKeeper.getData(path,false,stat);
-        System.out.println("原先的值为： " + new String(data));
+    private void setValue(String path,Stat stat,Object o) throws InterruptedException, KeeperException {
+        // 其实这里可以添加对这个getData的监听事件,这里我简单的用一个watcher来监听关闭
+        byte[] oldData = zooKeeper.getData(path,new NodeWatcher(this.zooKeeper),stat);
+
+        System.out.println("原先的值为： " + new String(oldData));
         // 将需要设置的值通过分隔符拼接上去
-        String newData = new String(data) + ";" + "ZKTest03";
-        zooKeeper.setData(path,newData.getBytes(StandardCharsets.UTF_8),stat.getVersion());
+        String newData = "";
+        if (o instanceof ZookeeperInfo){
+            newData = ((ZookeeperInfo) o).getData();
+        }
+        String data = new String(oldData) + ";" + newData;
+        Stat s = zooKeeper.setData(path,data.getBytes(StandardCharsets.UTF_8),stat.getVersion());
+
+        zooKeeper.setData(path, data.getBytes(StandardCharsets.UTF_8), stat.getVersion(), new StatCallback() {
+            // 这里其实可以在ZookeeperInfo中添加一个操作状态，就可以使用this来代替重写方法
+            @Override
+            public void processResult(int i, String s, Object o, Stat stat) {
+                boolean flag = stat == null ? true : false;
+                checkStat(stat,o,flag);
+            }
+        }, o);
+
+    }
+
+    private void checkStat(Stat stat,Object o,boolean flag){
+        ((ZookeeperInfo)o).setProvideFlag(flag);
+
+        // 设置完值后或者创建成功后需要放开锁，这个锁是ProviderService里await的锁
+        ((ZookeeperInfo)o).getCountDownLatch().countDown();
     }
 }

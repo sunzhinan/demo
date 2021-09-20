@@ -4,6 +4,8 @@ import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 
+import java.util.concurrent.CountDownLatch;
+
 /**
  * @author: sunzhinan
  * @create: 2021-09-15 22:51
@@ -23,11 +25,14 @@ public class NodeWatcher implements Watcher {
             case None:
                 break;
             case NodeCreated:
-//                zooKeeper.getData("");
+                // 如果服务创建成功
+                System.out.println("节点创建成功！");
                 break;
             case NodeDeleted:
                 break;
             case NodeDataChanged:
+                // data发生变化
+                System.out.println("节点数据变化！");
                 break;
             case NodeChildrenChanged:
                 break;

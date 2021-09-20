@@ -1,7 +1,6 @@
-package com.example.demo.zk;
+package com.example.demo.zk.provider;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.demo.zk.provider.ProviderWatcher;
 import org.apache.log4j.Logger;
 import org.apache.zookeeper.ZooKeeper;
 
