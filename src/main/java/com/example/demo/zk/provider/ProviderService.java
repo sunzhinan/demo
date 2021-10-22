@@ -51,6 +51,7 @@ public class ProviderService {
         return info.isProvideFlag();
     }
 
+    // 测试类
     public static void main(String[] args) throws InterruptedException {
         ProviderService service = new ProviderService();
         System.out.println(service.provideService("/provider","222"));
