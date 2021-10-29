@@ -16,5 +16,9 @@ public class Test01 {
          */
         int j = i&(~i+1);
         System.out.println(j);
+
+
+        System.out.println(13^77);
+        System.out.println(20|32);
     }
 }
