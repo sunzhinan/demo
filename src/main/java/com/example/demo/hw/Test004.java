@@ -13,6 +13,8 @@ public class Test004 {
 
     private static int fun(String str){
         System.out.println(Integer.valueOf(str));
+        // 便利，相加，得到的数值调用isNum方法判断是否是水仙花数即可
+
         return 0;
     }
 
