@@ -11,14 +11,14 @@ package com.example.demo.hw;
  */
 public class Test004 {
 
-    private static <Char> int fun(String str){
+    private static int fun(String str){
         // 遍历，相加，得到的数值调用isNum方法判断是否是水仙花数即可
         char[] c = str.toCharArray();
 
         for (int i = 0; i < c.length-1; i++) {
             int a = c[i];
             int k = a;
-            for (int j = 1; j < c.length; j++) {
+            for (int j = i+1; j < c.length; j++) {
                 int b = c[j];
                 k = k + b;
                 if (k < 999  && isNum(k)){
