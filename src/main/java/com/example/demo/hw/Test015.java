@@ -73,11 +73,15 @@ public class Test015 {
             return;
         }
 
+        // 判断比较字符串长度，达到长度了退出
         if (k+1 == strLength){
             flag = false;
             return;
         }
 
+        /**
+         * 比较相邻字符是否相等
+         */
         if(i < length && j+1 < length && checkOutofBounds(j+1) && c[i][j+1] == strs[k+1]){
             stringBuilder.append(i + "," + (j+1) + ",");
             check(i,j+1,k+1);
@@ -91,11 +95,17 @@ public class Test015 {
             stringBuilder.append((i-1) + "," + j + ",");
             check(i-1,j,k+1);
         }else{
+            // 如果不等 退出，将stringBuilder设置长度设置为0
             flag = false;
             stringBuilder.setLength(0);
         }
     }
 
+    /**
+     * 校验二维数组是否越界
+     * @param x
+     * @return
+     */
     private static boolean checkOutofBounds(int x){
         if (x < 0 || x>= length ){
             return false;
