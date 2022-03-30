@@ -1,4 +1,4 @@
-package com.example.demo.basis.algorithm;
+package com.example.demo.algorithm;
 
 /**
  * @author: sunzhinan

@@ -1,4 +1,4 @@
-package com.example.demo.basis.algorithm;
+package com.example.demo.algorithm;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
