@@ -1,6 +1,6 @@
 package com.example.demo.algorithm;
 
-public class Test04 {
+public class Test005 {
 
     private static int[] nums = {0,0,1,1,1,2,2,3,3,4};
 

@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @create: 2021-10-30 09:49
  * @description:
  */
-public class Test03 {
+public class Test004 {
     public static void main(String[] args) {
         int[] nums = {1,2,3,4,2,3};
 

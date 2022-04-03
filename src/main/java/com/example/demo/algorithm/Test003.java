@@ -5,7 +5,7 @@ package com.example.demo.algorithm;
  * @create: 2020-08-08 14:14
  * @description: 如何把一个int类型的数，提取出它二进制最右侧的1来
  */
-public class Test01 {
+public class Test003 {
     public static void main(String[] args) {
         int i = 6584;
         /**

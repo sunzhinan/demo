@@ -7,12 +7,23 @@ package com.example.demo.algorithm;
  */
 public class TestArithmetic {
 
+    private static void print(int i){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int j = 31; j >= 0; j--) {
+            stringBuilder.append((i&(1<<j)) == 0? "0" : "1");
+        }
+        System.out.println(stringBuilder.toString());
+    }
+
     /**
      * 带符号右移
      */
     public static void test1() {
         int i = -4;
+        print(i);
         System.out.println("带符号右移 i : " + (i >> 2));
+        print(i>>2);
+
     }
 
     /**
@@ -65,7 +76,9 @@ public class TestArithmetic {
      */
     public static void test7() {
         int i = 20;
+        print(i);
         System.out.println("20取反 结果为 :" + (~i));
+        print(~i);
     }
 
     public static void main(String[] args) {
