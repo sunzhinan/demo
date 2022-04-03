@@ -1,40 +1,35 @@
 package com.example.demo.algorithm;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-
 /**
  * @author: sunzhinan
- * @create: 2021-10-30 09:49
- * @description:
+ * @create: 2022-04-04 00:22
+ * @description: 选择排序
  */
 public class Test004 {
-    public static void main(String[] args) {
-        int[] nums = {1,2,3,4,2,3};
 
-        int[] arr = new int[2];
-        int k = 0;
-        for(int i = 0 ; i< nums.length-1;i++){
-            for(int j = i+1;j<nums.length;j++){
-                System.out.println(nums[i]);
-                System.out.println(nums[j]);
-                System.out.println(nums[i] ^ nums[j]);
-                System.out.println("---------");
+    private static void fun(int[] array){
+        if(array == null || array.length < 2){
+            return;
+        }
 
-                if((nums[i] ^ nums[j]) != 0){
-                    System.out.println("********");
-                    System.out.println(nums[i]);
-                    System.out.println("********");
-                    arr[k] = nums[i];
-                    k++;
+        for (int i = 0; i < array.length -1; i++) {
+            for (int j = i + 1; j < array.length; j++) {
+                if(array[j] < array[i]){
+                    array[i] = array[j]^array[i];
+                    array[j] = array[j]^array[i];
+                    array[i] = array[j]^array[i];
                 }
             }
         }
-        System.out.println(arr[0]);
-        System.out.println(arr[1]);
 
+    }
 
-        AtomicBoolean second = new AtomicBoolean(false);
-
-        System.out.println(second.get());
+    public static void main(String[] args) {
+        int[] array = {34,23,45,25,56,12,36,48};
+        fun(array);
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i]);
+            System.out.print(",");
+        }
     }
 }

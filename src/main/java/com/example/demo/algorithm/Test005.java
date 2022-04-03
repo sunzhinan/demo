@@ -1,30 +1,68 @@
 package com.example.demo.algorithm;
 
+/**
+ * @author: sunzhinan
+ * @create: 2022-04-04 00:25
+ * @description: 冒泡排序
+ */
 public class Test005 {
 
-    private static int[] nums = {0,0,1,1,1,2,2,3,3,4};
+    /**
+     * 由小到大
+     * @param array
+     */
+    private static void fun1(int[] array){
 
-    public static void main(String[] args) {
-        if (nums == null || nums.length == 0) {
-//            return 0;
-            System.out.println(0);
+        if(array == null || array.length < 2){
+            return;
         }
-        int left = 0;
-        for (int right = 1; right < nums.length; right++){
-            //如果左指针和右指针指向的值一样，说明有重复，这个时候，左指针不动，右指针继续往右移。如果他俩指向的值不一样就把右指针指向的值往前挪
-            if (nums[left] != nums[right]) {
-                nums[++left] = nums[right];
 
+        for (int i = 0; i < array.length-1; i++) {
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if(array[j] > array[j+1]){
+                    array[j] = array[j]^array[j+1];
+                    array[j+1] = array[j]^array[j+1];
+                    array[j] = array[j]^array[j+1];
+                }
             }
         }
+    }
 
-//        return ++left;
-        System.out.println(++left);
-        for (int i = 0; i < nums.length-1; i++) {
-            System.out.println(nums[i]);
+    /**
+     * 由大到小
+     * @param array
+     */
+    private static void fun2(int[] array){
+        if(array == null || array.length < 2){
+            return;
         }
 
-        System.out.println("----------------");
-        System.out.println(nums.length);
+        for (int i = 0; i < array.length-1; i++) {
+            for (int j = array.length - 1; j > i ; j--) {
+                if(array[j] > array[j-1]){
+                    array[j] = array[j]^array[j-1];
+                    array[j-1] = array[j]^array[j-1];
+                    array[j] = array[j]^array[j-1];
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] array = {34,23,45,25,56,12,36,49};
+        fun1(array);
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i]);
+            System.out.print(",");
+        }
+
+        System.out.println();
+        System.out.println("-------");
+
+        fun2(array);
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i]);
+            System.out.print(",");
+        }
     }
 }
