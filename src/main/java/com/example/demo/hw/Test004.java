@@ -29,9 +29,20 @@ public class Test004 {
         }
 
         subString = str;
-        for (int i = 2; i < subString.length(); i++) {
-            num = 0;
-            sub(subString.substring(0,i),0,1);
+        length = subString.length();
+        for (int i = 2; i < length; i++) {
+            char[] chars = subString.substring(0,i).toCharArray();
+            int ans = 0;
+            for (int j = 0 ; j < chars.length;j++){
+                ans = ans + chars[j];
+            }
+
+            if (isNum(ans)){
+                sub(i,i+1);
+            }else
+            {
+                flag = false;
+            }
 
             if (flag){
                 k++;
@@ -42,16 +53,16 @@ public class Test004 {
             // 分割不成功
             return -1;
         }else if( k == 1){
-            return num;
+            return num + 1;
         }
         return 0;
     }
 
-    private static void sub(String str, int start,int end){
+    private static void sub( int start,int end){
         if(end > length || start > length){
             return;
         }
-        String s = str.substring(start , end);
+        String s = subString.substring(start , end);
         char[] chars = s.toCharArray();
 
         int ans = 0;
@@ -62,11 +73,11 @@ public class Test004 {
         if (isNum(ans)){
             flag = true;
             num++;
-            sub(subString,end,end+1);
+            sub(end,end+1);
 
         }else{
             flag = false;
-            sub(subString,start,end+1);
+            sub(start,end+1);
         }
 
     }
@@ -98,6 +109,6 @@ public class Test004 {
 
         System.out.println("-------------");
 
-        System.out.println(fun("ZZZeZZZe"));
+        System.out.println(fun("ZZZeZZZeZZZe"));
     }
 }
