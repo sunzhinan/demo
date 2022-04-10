@@ -11,22 +11,64 @@ package com.example.demo.hw;
  */
 public class Test004 {
 
+    private static int length ;
+
+    private static String subString;
+
+    private static int k = 0;
+
+    private static int num = 0;
+
+    private static boolean flag = false;
+
     private static int fun(String str){
         // 遍历，相加，得到的数值调用isNum方法判断是否是水仙花数即可
-        char[] c = str.toCharArray();
 
-        for (int i = 0; i < c.length-1; i++) {
-            int a = c[i];
-            int k = a;
-            for (int j = i+1; j < c.length; j++) {
-                int b = c[j];
-                k = k + b;
-                if (k < 999  && isNum(k)){
-                    return k;
-                }
+        if (str.length() < 2){
+            return 0;
+        }
+
+        subString = str;
+        for (int i = 2; i < subString.length(); i++) {
+            num = 0;
+            sub(subString.substring(0,i),0,1);
+
+            if (flag){
+                k++;
             }
         }
+
+        if (k  > 1){
+            // 分割不成功
+            return -1;
+        }else if( k == 1){
+            return num;
+        }
         return 0;
+    }
+
+    private static void sub(String str, int start,int end){
+        if(end > length || start > length){
+            return;
+        }
+        String s = str.substring(start , end);
+        char[] chars = s.toCharArray();
+
+        int ans = 0;
+        for (int i = 0 ; i < chars.length;i++){
+            ans = ans + chars[i];
+        }
+        // 判断是否是水仙花数
+        if (isNum(ans)){
+            flag = true;
+            num++;
+            sub(subString,end,end+1);
+
+        }else{
+            flag = false;
+            sub(subString,start,end+1);
+        }
+
     }
 
     /**
@@ -35,6 +77,10 @@ public class Test004 {
      * @param num
      */
     private static boolean isNum(int num){
+        if(num < 100 || num > 999){
+            return false;
+        }
+
         int a = num%10;
         int b = num/10%10;
         int c = num/100%10;
@@ -52,6 +98,6 @@ public class Test004 {
 
         System.out.println("-------------");
 
-        System.out.println(fun("abc"));
+        System.out.println(fun("ZZZeZZZe"));
     }
 }
