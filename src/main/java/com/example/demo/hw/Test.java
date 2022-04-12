@@ -8,12 +8,11 @@ package com.example.demo.hw;
 public class Test {
 
     public static void main(String[] args) {
-        String str = "ZZZe";
-        char[] chars = str.toCharArray();
-        int a = 0;
-        for (int i = 0 ;i < chars.length ; i++){
-            a = a + chars[i];
-        }
-        System.out.println(a);
+        StringBuilder stringBuilder = new StringBuilder("");
+        stringBuilder.append("2");
+        stringBuilder.append("3");
+        stringBuilder.append("4");
+
+        System.out.println(stringBuilder.toString());
     }
 }
