@@ -1,18 +1,24 @@
 package com.example.demo.hw;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * @author: sunzhinan
- * @create: 2022-04-10 23:31
- * @description:
+ * @create: 2022-04-13 22:31
+ * @description: 牛客网华为机试第三题
  */
-public class Test {
-
+public class Test021 {
     public static void main(String[] args) {
-        int[] arrays = {2,3,2,3,4,2,4,55,64,3,43,454};
-//        int[] arrays = {1,2,2};
-        int length = arrays.length;
+        Scanner scanner = new Scanner(System.in);
+        int length = scanner.nextInt();
+        int[] arrays = new int[length];
+        int k = 0;
+        while (k < length){
+            arrays[k] = scanner.nextInt();
+            k++;
+        }
+        scanner.close();
 
         Arrays.sort(arrays);
 
@@ -21,7 +27,8 @@ public class Test {
             if(ans != 0){
                 System.out.println(arrays[i]);
                 ans = 0;
-                if(i == length -2){
+
+                if (i == length -2){
                     System.out.println(arrays[i+1]);
                 }
             }else if ( i == length -2){
@@ -29,7 +36,6 @@ public class Test {
             }
 
         }
-
 
     }
 }
