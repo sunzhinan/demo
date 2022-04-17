@@ -13,8 +13,10 @@ public class Test002 {
      */
     public static void main(String[] args) {
         int i = -1;
+        int a = -1;
 
         System.out.println(function(i));
+        System.out.println(function((~a + 1)));
 
         System.out.println(function(Integer.MIN_VALUE));
 

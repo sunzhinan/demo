@@ -5,7 +5,7 @@ package com.example.demo.leetcode;
  * @create: 2022-04-11 22:31
  * @description: leetcode第35题
  */
-public class Test0035 {
+public class LeetCode0035 {
 
     public static int searchInsert(int[] nums, int target) {
         if (nums.length == 1 && (nums[0] == target || nums[0] > target)) {

@@ -5,7 +5,7 @@ package com.example.demo.leetcode;
  * @create: 2022-04-12 23:56
  * @description: leetcode第67题
  */
-public class Test0067 {
+public class LeetCode0067 {
     public static String addBinary(String a, String b) {
         char[] charsA = a.toCharArray();
         char[] charsB = b.toCharArray();
