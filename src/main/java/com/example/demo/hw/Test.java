@@ -8,7 +8,7 @@ package com.example.demo.hw;
 public class Test {
 
     public static void main(String[] args) {
-        System.out.println((int)Math.sqrt(180));
+        System.out.println("//abc///dfg".replaceAll("/+","/"));
 
 
     }
