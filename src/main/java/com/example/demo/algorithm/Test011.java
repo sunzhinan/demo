@@ -1,5 +1,7 @@
 package com.example.demo.algorithm;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 
 /**
@@ -22,5 +24,7 @@ public class Test011 {
         myLinkDemo3.data = info3;
         myLinkDemo1.next = myLinkDemo2;
         myLinkDemo2.next = myLinkDemo3;
+
+        Arrays.sort(new Integer[]{3, 1, 2}, Collections.reverseOrder());
     }
 }
