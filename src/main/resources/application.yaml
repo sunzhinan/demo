@@ -1,6 +1,13 @@
-cache:
-  overTime: 30000
-  maxSize: 1024
+#cache:
+#  overTime: 30000
+#  maxSize: 1024
+
+person:
+  name: sunzhinan
+  age: 29
+  likes:
+    - movie
+    - music
 
 zookeeper:
   sessionTimeOut: 3000

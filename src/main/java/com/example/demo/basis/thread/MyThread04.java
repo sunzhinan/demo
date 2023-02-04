@@ -23,8 +23,8 @@ public class MyThread04 implements Callable {
         FutureTask task = new FutureTask(myThread04);
         Thread thread = new Thread(task,"线程一");
         thread.start();
-
         System.out.println(task.get());
+
         /**
          * 通过线程池启动
          */

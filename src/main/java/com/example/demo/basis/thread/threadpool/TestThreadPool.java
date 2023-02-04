@@ -12,7 +12,9 @@ import java.util.concurrent.*;
 public class TestThreadPool {
     static boolean isPrime(int num){
         for (int i = 2; i <= num/2; i++) {
-            if (num % i ==0) return false;
+            if (num % i ==0) {
+                return false;
+            }
         }
         return true;
     }
@@ -21,7 +23,9 @@ public class TestThreadPool {
     {
         List<Integer> results = new ArrayList<>();
         for (int i=start;i<=end;i++){
-            if(isPrime(i)) results.add(i);
+            if(isPrime(i)) {
+                results.add(i);
+            }
         }
 
         return results;
