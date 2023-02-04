@@ -11,7 +11,7 @@ public class Primary002 {
 
         int max = 0;
         for (int i = 0; i < length-1; i++) {
-            if ((prices[i+1] - prices[i])>0){
+            if (prices[i+1] > prices[i]){
                 max = max + prices[i+1] - prices[i];
             }
         }
