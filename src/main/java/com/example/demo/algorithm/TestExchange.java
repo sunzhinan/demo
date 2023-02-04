@@ -8,7 +8,7 @@ package com.example.demo.algorithm;
 public class TestExchange {
 
     public static void main(String[] args) {
-        int a = 4;
+        int a = 0;
         int b = 6;
         //这里只要记住：a^b^a = b; a^b^b = a;所以我们得到a^b后，只要将这个数分别^a或者^b，就可以的a和b
         a = a^b;
