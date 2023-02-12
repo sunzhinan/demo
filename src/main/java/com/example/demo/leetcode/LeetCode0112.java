@@ -1,6 +1,6 @@
 package com.example.demo.leetcode;
 
-import com.example.demo.algorithm.TreeNode;
+import com.example.demo.algorithm.test.TreeNode;
 
 /**
  * @author: sunzhinan

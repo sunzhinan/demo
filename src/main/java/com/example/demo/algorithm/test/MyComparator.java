@@ -1,4 +1,4 @@
-package com.example.demo.algorithm;
+package com.example.demo.algorithm.test;
 
 import java.util.Comparator;
 
