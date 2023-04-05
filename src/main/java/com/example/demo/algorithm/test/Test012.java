@@ -11,7 +11,9 @@ public class Test012 {
         Node next = null;
         while (head != null){
             next = head.next;
+            // 转方向
             head.next = pre;
+            // 记录位置
             pre = head;
             head = next;
         }
@@ -37,5 +39,4 @@ public class Test012 {
             node = node.next;
         }
     }
-
 }
