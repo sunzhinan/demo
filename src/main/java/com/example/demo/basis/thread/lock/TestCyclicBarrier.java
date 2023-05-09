@@ -1,7 +1,10 @@
 package com.example.demo.basis.thread.lock;
 
+import org.apache.curator.utils.ThreadUtils;
+
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author : sun
@@ -34,7 +37,8 @@ public class TestCyclicBarrier {
                 }
             }).start();
         }
-
+        TimeUnit.SECONDS.sleep(10);
+        System.out.println("OK****************");
         /**
          * 下面的代码时不起作用的,因为它只有主线程await了
          */
