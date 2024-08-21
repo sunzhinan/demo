@@ -23,7 +23,7 @@ public class LeetCode0003 {
             char c = str.charAt(right);
             if (map.containsKey(c)) {
                 /**
-                 * 为啥这里用Math.max方法来移动left？
+                 * 为啥这里用Math.max方法来移动left？思考abba
                  */
                 left = Math.max(left,map.get(c) +1 );
             }
